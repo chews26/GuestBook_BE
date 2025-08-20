@@ -27,6 +27,11 @@ public class EntryController {
         return service.create(req);
     }
 
+    @GetMapping("/{id}")
+    public EntryResponse get(@PathVariable Long id) {
+        return service.get(id);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id, @RequestParam String code) {
         service.delete(id, code);

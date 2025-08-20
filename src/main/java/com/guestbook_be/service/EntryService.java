@@ -64,4 +64,10 @@ public class EntryService {
     private EntryResponse toDto(Entry e) {
         return new EntryResponse(e.getId(), e.getNickname(), e.getMessage(), e.getCreatedAt(), e.getLikeCount());
     }
+
+    @Transactional(readOnly = true)
+    public EntryResponse get(Long id) {
+        Entry e = repo.findById(id).orElseThrow(() -> new ResponseStatusException(NOT_FOUND));
+        return toDto(e);
+    }
 }
